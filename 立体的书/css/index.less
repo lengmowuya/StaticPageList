@@ -1,0 +1,97 @@
+*{
+    margin:0;
+    padding:0;
+}
+@scale:1.7;
+html,body{
+    width:100vw;
+    height:100vh;
+    background-image: linear-gradient(to bottom,#004636,#002022);
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+#bookContainer{
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    perspective:800px;
+    -webkit-perspective: 800px;
+    width:236px * @scale;
+    height:338px * @scale;
+    &:hover{
+        // 设定父元素大小固定，以防止动画时移入触发改变
+        #book{
+            animation: rotate 0.65s forwards;
+        }
+
+    }
+}
+#book{
+    display:flex;
+    flex-direction: row;
+    transition:all 0.35s;
+    transform:rotateY(0deg);
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    width:236px * @scale;
+    height:338px * @scale;
+    animation: backRotate 0.65s forwards;
+    .cover{
+        width:236px * @scale;
+        height:338px * @scale;
+        background:url(./../assets/images/girl.jpg) no-repeat center center;
+        background-size: 100% 100%;
+    }
+    .side{
+        width:60px;
+        height:338px * @scale;
+        background:green;
+        color:#fff;
+        display:flex;
+        font-size:30px;
+        justify-content: center;
+        align-items: center;
+        padding:10px;
+        box-sizing: border-box;
+        text-align: center;
+        transform: rotateY(90deg);
+        transform-origin: 0px 0px;
+        user-select: none;
+        font-weight: bold;
+        position: absolute;
+        right:-60px;
+        top:0px;
+        overflow: hidden;
+    }
+    .shadow{
+        width:236px * @scale;
+        height:50px;
+        position: absolute;
+        left:0px;
+        bottom:-100px;
+        background:#000;
+        transform: rotateX(90deg);
+        transform-origin: center center;
+        filter:blur(40px);
+    }
+
+
+}
+@keyframes rotate {
+    from{
+        -webkit-transform:rotateY(0deg);
+    }
+    to{
+        -webkit-transform:rotateY(-60deg);
+    }
+}
+@keyframes backRotate {
+    from{
+        -webkit-transform:rotateY(-60deg);
+    }
+    to{
+        -webkit-transform:rotateY(0deg);
+    }
+}
